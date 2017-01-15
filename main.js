@@ -26,26 +26,25 @@
 
 // });
 
-document.ready(function() {
-  var str = "Jennifer Yuchi";
-  var text = '';
-  var aboutDescriptionElement = document.getElementById('hero');
-  var typespeed = 50;
+(function() {
+    var str = "JUSTIN CHI";
+    var text = '';
+    var herotext = document.getElementById('hero-text');
+    var typespeed = 0;
+    var mintypespeed = 60;
+    var maxtypespeed = 400;
+    var blinkingcursor = document.createElement('span');
+    blinkingcursor.innerHTML = '\♥';
+    blinkingcursor.id = 'blinking-cursor';
 
-  //give site enough time to load, before executing typewriter animation
-  setTimeout(function() {
     for (var i = 0; i <= str.length; i++) {
-      (function(x){
-        setTimeout(function() {
-          aboutDescriptionElement.html(text + '|');
-          text += str[x];
-        }, typespeed * x);
-      }(i));
+        (function(x) {
+            typespeed += Math.random() * (maxtypespeed - mintypespeed) + mintypespeed;
+            setTimeout(function() {
+                herotext.innerHTML = text;
+                herotext.appendChild(blinkingcursor);
+                text += str[x];
+            }, typespeed);
+        }(i));
     }
-  }, 1200);
-
-  setTimeout(function() {
-    aboutDescriptionElement.html(str + '<span class="blinking-cursor">|</span>');
-    console.log('end');
-  }, 1600 + typespeed * str.length);
-});
+})();
