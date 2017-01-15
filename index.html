@@ -4,37 +4,14 @@
 <head>
     <title>Typewriter Animation</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="./main.css" type="text/css" />
+    <link rel="stylesheet" href="/main.css" type="text/css" />
 </head>
 
 <body>
 <div id="hero">
   <span id="hero-text"></span>
 </div>
-<script>
-    (function() {
-        var str = "Jennifer Yuchi";
-        var text = '';
-        var herotext = document.getElementById('hero-text');
-        var typespeed = 0;
-        var mintypespeed = 60;
-        var maxtypespeed = 400;
-        var blinkingcursor = document.createElement('span');
-        blinkingcursor.innerHTML = '\&#9829;';
-        blinkingcursor.id = 'blinking-cursor';
-
-        for (var i = 0; i <= str.length; i++) {
-            (function(x) {
-                typespeed += Math.random() * (maxtypespeed - mintypespeed) + mintypespeed;
-                setTimeout(function() {
-                    herotext.innerHTML = text;
-                    herotext.appendChild(blinkingcursor);
-                    text += str[x];
-                }, typespeed);
-            }(i));
-        }
-    })();
-</script>
+<script src="/main.js"></script>
 </body>
 
 </html>
