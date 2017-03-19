@@ -1,4 +1,4 @@
 # typewriter_animation
 
-#####To-do
+##### To-do
 - build it into a React component
