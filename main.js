@@ -1,19 +1,41 @@
-document.addEventListener('DOMContentLoaded', function(event){
-  var str = "Justin_Chi";
-  var text = '';
-  var herotext = document.querySelector('.hero-title');
-  var typespeed = 0;
-  var mintypespeed = 90;
-  var maxtypespeed = 150;
+import React from 'react';
 
-  for (var i = 0; i <= str.length; i++) {
-    (function(x) {
-      typespeed += Math.random() * (maxtypespeed - mintypespeed) + mintypespeed;
-      setTimeout(function() {
-        herotext.innerHTML = text + '<span>&nbsp;</span>';
-        text += str[x];
-      }, typespeed);
-    }(i));
+class Typewriter extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      text: ''
+    }
   }
-});
 
+  clicketyClack(
+    text='Give me something to type!',
+    minTypeSpeed=70,
+    maxTypeSpeed=70,
+    delay=800
+  ) {
+    let str = '';
+    let typeSpeed = 0;
+    const self = this;
+
+    text.split('').forEach(c => {
+      typeSpeed += Math.random() * (maxTypeSpeed - minTypeSpeed) + minTypeSpeed;
+      setTimeout(() => {
+        str += c;
+        this.setState({ text: str });
+      }, delay + typeSpeed);
+    });
+  }
+
+  componentDidMount() {
+    this.clicketyClack(this.props.text, this.props.minTypeSpeed, this.props.maxTypeSpeed);
+  }
+
+  render() {
+    return (
+      <div className={this.props.class}>{this.state.text}<span>&nbsp;</span></div>
+    );
+  }
+}
+
+export default Typewriter;
