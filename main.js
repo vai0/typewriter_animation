@@ -8,12 +8,7 @@ class Typewriter extends React.Component {
     }
   }
 
-  clicketyClack(
-    text='Give me something to type!',
-    minTypeSpeed=70,
-    maxTypeSpeed=70,
-    delay=800
-  ) {
+  clicketyClack(text, minTypeSpeed, maxTypeSpeed, initDelay) {
     let str = '';
     let typeSpeed = 0;
     const self = this;
@@ -23,19 +18,28 @@ class Typewriter extends React.Component {
       setTimeout(() => {
         str += c;
         this.setState({ text: str });
-      }, delay + typeSpeed);
+      }, initDelay + typeSpeed);
     });
   }
 
   componentDidMount() {
-    this.clicketyClack(this.props.text, this.props.minTypeSpeed, this.props.maxTypeSpeed);
+    this.clicketyClack(this.props.text, this.props.minTypeSpeed, this.props.maxTypeSpeed, this.props.initDelay);
   }
 
   render() {
     return (
-      <div className={this.props.class}>{this.state.text}<span>&nbsp;</span></div>
+      <div className={this.props.className}>
+        {this.state.text}<span>&nbsp;</span>
+      </div>
     );
   }
+}
+
+Typewriter.defaultProps = {
+  text: 'Give me something to type!',
+  minTypeSpeed: 70,
+  maxTypeSpeed: 70,
+  initDelay: 800
 }
 
 export default Typewriter;
